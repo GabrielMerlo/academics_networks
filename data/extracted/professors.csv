@@ -1,0 +1,3 @@
+prof_id,name,department,current_position,personal_website,cv_url,main_fields,phd_institution,phd_year,job_market_paper,sex,source_url
+harvard_chetty_raj,Raj Chetty,harvard,"William A. Ackman Professor of Economics, Harvard University",http://www.rajchetty.com/,https://rajchetty.com/CV.pdf,,Harvard University,2003,,male,https://rajchetty.com/CV.pdf
+harvard_dell_melissa,Melissa Dell,harvard,"Andrew E. Furer Professor of Economics, Harvard University",https://dell.scholars.harvard.edu/,https://dell.scholars.harvard.edu/sites/g/files/omnuum7696/files/dell_cv_sept2024_1.pdf,,Massachusetts Institute of Technology,2012,,female,https://dell.scholars.harvard.edu/sites/g/files/omnuum7696/files/dell_cv_sept2024_1.pdf
