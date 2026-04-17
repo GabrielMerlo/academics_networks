@@ -1,0 +1,5 @@
+# Ignore any local reading_list directory and everything under it
+**/reading_list/
+
+# macOS
+.DS_Store
