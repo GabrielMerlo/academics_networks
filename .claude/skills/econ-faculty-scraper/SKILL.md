@@ -136,6 +136,8 @@ For each paper on the page, extract:
 
 If the website labels its list "Selected Publications" or clearly only shows a subset, **also** pull from the CV and merge. If no publications page exists at all, use the CV as the sole source.
 
+Some publications pages (Drupal widgets on Scholars@Harvard, filterable React/Angular apps) render the list via JavaScript and never produce a parseable linear HTML list — every paper appears as a noisy card or is duplicated across pagination. If the page looks like this (lots of filter controls, unstructured duplicates, or empty `<div>` placeholders), **treat the website pubs page as unparseable and fall back to the CV** for that prof. That's a legitimate outcome; just record in your progress log that the website pubs were unavailable.
+
 The `source_url` for a website-sourced paper is the publications page URL (not the homepage). For CV-sourced papers, source_url = CV URL.
 
 ### JSON blob shape
