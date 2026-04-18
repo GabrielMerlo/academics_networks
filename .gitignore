@@ -7,5 +7,8 @@
 # Claude Code local (per-user) settings
 .claude/settings.local.json
 
+# Claude Code skills — local/per-user, not shared via the repo
+.claude/skills/
+
 # Local session log maintained by the end-session skill (git log is the real history)
 session_log.md
