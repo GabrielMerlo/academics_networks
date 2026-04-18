@@ -10,8 +10,9 @@ SCHEMAS = {
     "professors.csv": [
         "prof_id", "name", "department", "current_position",
         "personal_website", "cv_url", "main_fields",
+        "bachelor_institution", "bachelor_year",
         "phd_institution", "phd_year", "job_market_paper",
-        "sex", "source_url",
+        "sex", "nationality", "nationality_source", "source_url",
     ],
     "advisors.csv": ["prof_id", "advisor_name", "source_url", "source_snippet"],
     "papers.csv": [

@@ -23,8 +23,9 @@ TABLES = {
         "professors.csv", "prof_id",
         ["prof_id", "name", "department", "current_position",
          "personal_website", "cv_url", "main_fields",
+         "bachelor_institution", "bachelor_year",
          "phd_institution", "phd_year", "job_market_paper",
-         "sex", "source_url"],
+         "sex", "nationality", "nationality_source", "source_url"],
     ),
     "advisors": (
         "advisors.csv", "prof_id",

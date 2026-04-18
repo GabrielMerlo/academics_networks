@@ -32,7 +32,9 @@ python3 .claude/skills/econ-faculty-scraper/scripts/init_extracted.py
 This creates `data/extracted/` and seeds the empty CSVs below with correct headers. It's a no-op if they already exist.
 
 ### professors.csv
-`prof_id, name, department, current_position, personal_website, cv_url, main_fields, phd_institution, phd_year, job_market_paper, sex, source_url`
+`prof_id, name, department, current_position, personal_website, cv_url, main_fields, bachelor_institution, bachelor_year, phd_institution, phd_year, job_market_paper, sex, nationality, nationality_source, source_url`
+
+`nationality_source` is one of `stated` (found verbatim on the CV or homepage), `inferred` (derived from name + bachelor's institution country), or blank.
 
 ### advisors.csv
 `prof_id, advisor_name, source_url, source_snippet`
@@ -152,10 +154,14 @@ The `source_url` for a website-sourced paper is the publications page URL (not t
     "personal_website": "https://antras.scholars.harvard.edu/",
     "cv_url": "https://example.com/cv.pdf",
     "main_fields": "International Trade; Multinational Firms",
+    "bachelor_institution": "Universitat Pompeu Fabra",
+    "bachelor_year": "1996",
     "phd_institution": "MIT",
     "phd_year": "2003",
     "job_market_paper": "Firms, Contracts, and Trade Structure",
     "sex": "male",
+    "nationality": "Spanish",
+    "nationality_source": "inferred",
     "source_url": "https://example.com/cv.pdf"
   },
   "advisors": [
@@ -199,6 +205,8 @@ If nothing matches, treat as CV-not-found.
 
 ## Extraction heuristics
 
+**Bachelor's institution / year**: in the "Education" section, look for `B.A.`, `B.S.`, `A.B.`, `AB`, `BA`, `BSc`, `Bachelor of Arts`, `Bachelor of Science`, `Licenciatura`, `Licence`, or `Undergraduate`. The year is usually adjacent or parenthesized. Don't confuse with MPhil, M.A., or M.Sc. lines — those are master's.
+
 **PhD institution / year**: in an "Education" section, look for `Ph.D.`, `PhD`, `D.Phil.`, `Doctor of Philosophy`. The year is usually adjacent or parenthesized. Don't confuse with postdoc, M.A., M.Sc., or B.A. listings.
 
 **Advisors / supervisors**: CVs sometimes list them explicitly under the PhD line — `Advisors:`, `Committee:`, `Supervisors:`, `Dissertation committee:`. If not explicitly stated, leave blank. Never infer.
@@ -224,6 +232,27 @@ If nothing matches, treat as CV-not-found.
 Infer from the first name using common conventions ("David" → male, "Amanda" → female). Leave blank when the name is ambiguous ("Robin", "Pat", "Sam", "Alex", most non-English names you're unsure about). If the website has a clear profile photo and the name is ambiguous, the photo can resolve it; otherwise leave blank.
 
 This field is for aggregate statistics. Blank is always better than a guess.
+
+## Nationality
+
+Unlike most fields in this skill, `nationality` is allowed to be inferred — but mark the inference explicitly via `nationality_source` so the user can filter.
+
+Rule of precedence:
+
+1. **Stated.** If the CV or homepage says it directly ("Nationality: Spanish", "Citizenship: German", "Italian national", "Brazilian economist"), use that value and set `nationality_source = stated`. Record the quote as `source_snippet` on the professors row would — no separate row, but keep the `source_url` pointing at the document you read.
+2. **Inferred.** Otherwise combine (a) the linguistic origin of the professor's first and last name with (b) the country of their `bachelor_institution`. Agreement between the two is a strong signal. Examples:
+   - "Pol Antràs" (Catalan name) + Universitat Pompeu Fabra (Spain) → `Spanish`
+   - "Oleg Itskhoki" (Russian name) + Moscow State University (Russia) → `Russian`
+   - "David Laibson" (Anglo-American name) + Harvard (USA) → `American`
+   Set `nationality_source = inferred`.
+3. **Blank** when the signal is weak or conflicting. Specifically:
+   - The name is ambiguous (common across many countries) AND the bachelor's institution is in a cosmopolitan hub that admits students from everywhere (MIT, Harvard, Oxford, Cambridge, LSE, Stanford, Chicago, Yale, Princeton). The undergrad location gives no signal.
+   - The bachelor's institution is unknown and the name alone isn't clearly diagnostic.
+   - Name and bachelor's-country disagree strongly (e.g., English name + foreign undergrad, or vice versa) — don't pick one; leave blank.
+
+Use standard English nationality adjectives ("American", "Spanish", "Indian", "Brazilian") — not country codes ("USA", "ESP") or hyphenated forms ("India-born").
+
+This column is for broad-brush demographic analysis, not individual classification. Blank is always safer than a shaky inference.
 
 ## Resumability
 
