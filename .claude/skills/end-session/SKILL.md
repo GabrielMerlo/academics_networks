@@ -48,12 +48,12 @@ Don't paste commit messages or granular file diffs here — that's what git log 
 
 ## 3. Append a session log entry
 
-`session_log.md` at the project root. Create it if missing, seeded with:
+`session_log.md` at the project root. Note: this file is **gitignored** — it's a local per-clone artifact, not part of the committed history. Step 1's commit will not include it, which is intentional. Create it if missing, seeded with:
 
 ```
 # Session Log
 
-Newest entries first. See git log for file-level history.
+Rolling log of the last 5 working sessions, maintained by the `end-session` skill (`.claude/skills/end-session/`). Each entry summarizes what was decided, changed, or left open that session — enough for the next one to pick up from. Newest entries on top; when a sixth session is added, the oldest entry is dropped. `git log` is the full history.
 
 ```
 
@@ -72,6 +72,8 @@ Use the current date. Bullets should be specific enough that a future session ca
 Include open questions or deferred decisions — those are the most valuable thing a future session can see.
 
 If the session had genuinely no meaningful activity (read a few files, didn't decide or change anything), skip this step rather than add a thin entry.
+
+**Retention — keep only the last 5 entries.** Before prepending, count how many `## YYYY-MM-DD` sections already exist in the file. If adding a new one would make the count 6 or more, delete the oldest entry (the one at the bottom) first. The log is a rolling window; full history lives in `git log`.
 
 ## Wrap-up
 
