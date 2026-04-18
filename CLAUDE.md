@@ -8,14 +8,15 @@ The current focus is economics faculty at the top 20 US economics departments (p
 
 ## Current state
 
-_Last refreshed: 2026-04-18._
+_Last refreshed: 2026-04-18 (evening)._
 
-- **Rosters collected**: Harvard, MIT, Berkeley, Chicago, Stanford, Princeton, Yale. 13 of 20 top-20 departments still to do.
-- **Harvard roster cleaned** to active faculty only (Dynan, Foote, Furman, Miron removed as non-tenure-track / lecturer).
-- **Scraped** (in `data/extracted/`): full Harvard roster (54 profs). 7 flagged as manual-review — no parseable CV (Diamond, Gonczarowski, Nagel, Pallais, Rabin, Stantcheva, Singh). 2 partial (Graves, Shengwu Li).
+- **Rosters collected**: all 20 top-20 departments. Faculty-list collection phase is done; scraping is the remaining data-collection step.
+- **Scraped** (in `data/extracted/`): Harvard only (54 profs). 7 flagged as manual-review — no parseable CV (Diamond, Gonczarowski, Nagel, Pallais, Rabin, Stantcheva, Singh). 2 partial (Graves, Shengwu Li).
 - **Dataset fields**: professors, papers, coauthors, employment, advisors, presentations, referee journals, students. `professors.csv` has `bachelor_institution / bachelor_year / nationality / nationality_source` columns; all blank on the existing 54 rows until re-scraped. `main_fields` populated for only 8/54 — heuristic is strict on purpose.
 - **Coauthor-to-paper ratio** is 1.25 across the Harvard set — suspiciously low for economics; a sample spot-check is queued.
-- **Next**: pick between (a) scraping Princeton/Yale under the new schema, (b) back-filling nationality/bachelor for the 54 Harvard rows, (c) sampling coauthors for a data-quality check.
+- **Skills** under `.claude/skills/` are local per-user artifacts (gitignored), not in the repo. Same for `session_log.md`.
+- **Research question in play**: brain drain vs. brain circulation — do foreign-trained US-based economists maintain coauthorship ties to their undergrad country? The dataset is a good fit once bachelor's info is populated.
+- **Next**: pick between (a) running the scraper on the 19 remaining departments, (b) back-filling nationality/bachelor for the 54 Harvard rows, (c) sampling Harvard coauthors for a data-quality check. Princeton's roster (87 rows) is unusually large — worth reviewing against the active-faculty-only rule before scraping.
 
 ## Working notes
 
