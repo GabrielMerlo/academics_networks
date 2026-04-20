@@ -8,17 +8,16 @@ The current focus is economics faculty at the top 20 US economics departments (p
 
 ## Current state
 
-_Last refreshed: 2026-04-18 (late evening)._
+_Last refreshed: 2026-04-19._
 
-- **Rosters collected**: all 20 top-20 departments. Scraping is the remaining data-collection step.
-- **Scraped** (Harvard only, 54 profs): raw tables in `data/extracted/` — professors, papers, coauthors, employment, advisors, presentations, referee journals, students. 7 flagged manual-review, 2 partial. `bachelor_*` and `nationality*` columns still blank on existing rows until re-scraped; `main_fields` populated for 8/54.
-- **Two-layer schema now in place**. Raw layer is the audit trail (never edit in place). Derived / network-ready layer — `authors.csv`, `papers_canonical.csv`, `paper_authors.csv` — is rebuilt from scratch on every prof commit by `build_canonical.py`. Current derived totals from Harvard: **2,501 authors (54 faculty), 4,636 canonical papers, 10,494 authorship edges** (~300 cross-prof paper dedups).
-- **Canonical paper ID**: `<sorted-author-lastnames>_<year>_<title-slug>` — collapses duplicate rows when two in-roster profs coauthor the same paper. No DOI dependence (DOI column is optional, currently unused).
-- **Author disambiguation is first-pass**: merges names by last-name + prefix-compatible given names. Handles "John List" vs "J. List" correctly but will false-merge two different "J. Lasts" at the top of the profession. Spot-check results before analysis.
-- **Manual-review log** (`_manual_review.csv`) now tracks scraper misses by reason (`website_missing / website_unreachable / cv_not_found / pdf_parse_failed / pubs_page_unparseable / other`) so isolated faculty nodes are distinguishable from failed extractions. Empty for the existing Harvard rows — will populate on re-scrape / future departments.
-- **Scraper skill** (local, gitignored under `.claude/skills/`): schema docs + usage guide + error-handling rules all updated this session. `write_prof.py` now invokes `build_canonical.py` automatically after each prof commit.
+- **Scraped**: Harvard (54) + MIT (40) = **94 active faculty** across 2 of 20 departments. Network-layer totals: **3,675 authors (94 faculty), 6,538 canonical papers, 15,106 authorship edges**.
+- **MIT data-quality caveat**: 34 of 40 MIT profs are flagged `other` in `_manual_review.csv` — the scrape agent skipped presentations/referee_journals/students to stay on context budget. Those three tables are effectively Harvard-only right now. 4 MIT profs flagged `cv_not_found` (Ball, Chernozhukov, Gibbons, Mullainathan); 2 flagged `pubs_page_unparseable` (Atkin, Prelec). Rambachan has only 1 of ~20 papers (parser miss, currently unflagged).
+- **Two-layer schema** (raw + derived) in place and documented in README. `build_canonical.py` rebuilds authors/papers_canonical/paper_authors from scratch on every prof commit. Canonical paper ID = `<sorted-author-lastnames>_<year>_<title-slug>`.
+- **Author disambiguation is first-pass**: merges by last-name + prefix-compatible given names. Good for rare names, false-merges risk for common East Asian names. Spot-check needed before analysis.
+- **Design decisions confirmed this session**: bipartite (author×paper) is the canonical storage; weighted author-author matrices are one self-join away. Keep paper titles for deduplication. `author_id` is unstable across rebuilds. External-ID resolution (RePEc > OpenAlex > ORCID) is the upgrade path for serious disambiguation but not needed for the first pass — faculty-to-faculty edges are clean via `prof_id`.
+- **CV cache**: `data/cv_cache/<department>/<slug>.txt` (gitignored). Only `.txt` extractions are kept; PDFs are transient. SKILL.md updated to enforce this. Harvard cache has 2 HTML bio pages (Campbell, Dell); MIT cache has 36 `.txt` files.
 - **Research question in play**: brain drain vs. brain circulation — do foreign-trained US-based economists maintain coauthorship ties to their undergrad country? Good fit once bachelor's info is populated.
-- **Next**: pick between (a) running the scraper on the 19 remaining departments, (b) back-filling nationality/bachelor for 54 Harvard rows, (c) sampling Harvard coauthors for data-quality check, (d) spot-checking the author disambiguation on the 2,501 authors currently generated. Princeton's roster (87 rows) still needs active-faculty-only review before scraping.
+- **Next**: pick between (a) re-scraping the 34 MIT profs for presentations/referee_journals/students (CVs are cached, targeted pass), (b) fixing the 2 MIT pubs-parser misses + Rambachan, (c) continuing to the remaining 18 departments, (d) starting network analysis on the Harvard+MIT slice to validate the design end-to-end. Princeton's 87-row roster still needs active-faculty-only review before scraping.
 
 ## Working notes
 

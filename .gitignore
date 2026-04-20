@@ -12,3 +12,7 @@
 
 # Local session log maintained by the end-session skill (git log is the real history)
 session_log.md
+
+# Cached CV PDFs + text extractions used by the scraper skill. Local per-clone;
+# not committed. Re-download on demand if lost.
+data/cv_cache/

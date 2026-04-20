@@ -1,1 +1,41 @@
 prof_id,reason,note
+mit_acemoglu_daron,other,presentations and editorial activities not extracted this run due to CV volume; re-scrape targeted if needed
+mit_agarwal_nikhil,other,presentations (Invited Lectures section) not extracted this run; referee journals extracted as an unordered list
+mit_andrews_isaiah,other,"presentations, referee journals, and students not extracted this run"
+mit_angrist_josh,other,presentations and students not extracted this run; referee journals taken from CV Referee list
+mit_autor_david_h,other,"presentations, referee journals, students not fully extracted this run"
+mit_ball_ian,cv_not_found,MIT stub lacks CV; personal site https://sites.google.com/view/ianball has Drive-hosted CV that requires auth to download
+mit_ball_ian,pubs_page_unparseable,publications only on external Google Site; not extracted this run
+mit_caballero_ricardo,other,"presentations, referee journals, students not extracted this run"
+mit_chernozhukov_victor,cv_not_found,MIT stub lacks CV; personal site https://www.victorchernozhukov.com/ was not fetched in this run
+mit_costinot_arnaud,other,"presentations, referee journals, students not extracted this run"
+mit_duflo_esther,other,"detailed employment history, presentations, referee journals, students not fully extracted this run"
+mit_ellison_glenn,other,"presentations, referee journals, students not extracted this run"
+mit_finkelstein_amy,other,"presentations, referee journals, students not extracted this run"
+mit_gibbons_robert,cv_not_found,MIT stub lacks CV and has no outbound personal site
+mit_mikusheva_anna,other,"presentations, referee journals, students not extracted this run"
+mit_morris_stephen,other,"presentations, referee journals, students not extracted this run"
+mit_mullainathan_sendhil,cv_not_found,MIT stub lacks CV; no outbound personal site detected
+mit_olken_benjamin,other,"presentations, referee journals, students not extracted this run"
+mit_pathak_parag,other,"presentations, referee journals, students not extracted this run"
+mit_salz_tobias,other,"presentations, referee journals, students not extracted this run"
+mit_werning_ivan,other,"CV is from 2022; presentations, referee journals, students not extracted this run"
+mit_wolf_christian,other,"biographical fields (PhD, bachelor's, employment) not extracted from CV this run; also has personal site at christiankwolf.com"
+mit_yildiz_muhamet,other,"CV is from 2022; presentations, referee journals, students not extracted this run"
+mit_atkin_david,pubs_page_unparseable,personal site at http://www.mit.edu/~atkin/ uses non-MIT HTML layout; papers list not parsed programmatically this run
+mit_banerjee_abhijit,other,"detailed employment history, presentations, referee journals, students not fully extracted this run"
+mit_donaldson_dave,other,"presentations, referee journals, students not extracted this run"
+mit_fudenberg_drew,other,"presentations, referee journals, students not extracted this run"
+mit_hendren_nathaniel,other,"presentations, referee journals, students not extracted this run"
+mit_moscona_jacob,other,"presentations, referee journals, students not extracted this run"
+mit_schilbach_frank,other,"presentations, referee journals, students not extracted this run"
+mit_townsend_robert_m,other,"presentations, referee journals, students not extracted this run"
+mit_whinston_michael,other,"presentations, referee journals, students not extracted this run"
+mit_wolitzky_alexander,other,"presentations, referee journals, students not extracted this run"
+mit_rose_nancy_l,other,"biographical fields (PhD, bachelor's) not extracted from CV this run"
+mit_hausman_jerry,other,"CV is from 2020; detailed employment, presentations, referee journals, students not extracted this run"
+mit_gruber_jonathan,other,"presentations, referee journals, students not extracted this run"
+mit_prelec_drazen,other,"CV is from 2022; presentations, referee journals, students not extracted this run"
+mit_rambachan_ashesh,other,"presentations, referee journals, students not extracted this run"
+mit_poterba_james,other,"presentations, referee journals, students not extracted this run"
+mit_roussille_nina,other,papers encoded manually from personal site ninaroussille.github.io; PhD year not extracted
