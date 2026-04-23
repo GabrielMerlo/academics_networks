@@ -23,4 +23,3 @@ data/extracted/*.csv
 !data/extracted/authors.csv
 !data/extracted/papers_canonical.csv
 !data/extracted/paper_authors.csv
-!data/extracted/author_weights.csv
