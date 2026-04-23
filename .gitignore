@@ -16,3 +16,11 @@ session_log.md
 # Cached CV PDFs + text extractions used by the scraper skill. Local per-clone;
 # not committed. Re-download on demand if lost.
 data/cv_cache/
+
+# data/extracted: track only the network layer. Raw per-prof scrape outputs and
+# audit/state files stay local — regenerate them with the scraper if lost.
+data/extracted/*.csv
+!data/extracted/authors.csv
+!data/extracted/papers_canonical.csv
+!data/extracted/paper_authors.csv
+!data/extracted/author_weights.csv
